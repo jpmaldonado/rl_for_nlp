@@ -76,11 +76,11 @@ rewards = []
 best_reward = 0
 best_theta = None
 tot_reward = 0
-for state, cat in tqdm(read()): # this is 
+for state, cat in tqdm(read()): # this is analog to the env.step() in OpenAI Gym, except that the state is simply moving to the next line.
     action = policy(state,theta)
     reward = 1 if cat==action else 0
     rewards.append(reward)
-    if len(rewards)==100:
+    if len(rewards)==100: # Check the theta vector in batches and update
         if sum(rewards)>best_reward:
             best_reward = sum(rewards)
             best_theta = theta
